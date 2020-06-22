@@ -8,6 +8,10 @@ import FullPost from './FullPost/FullPost';
 import './Blog.css';
 
 class Blog extends Component {
+    state = {
+        auth : false
+    };
+
     /*state = {
         posts : [],
         selectedPostId : null,
@@ -86,7 +90,7 @@ class Blog extends Component {
                 by default react router dom will always render all routes that satisfy the condition irrespective of order or not.
                 
                 Also currently the routes are being defined over here. What we can do is to make those routes inside of a child component instead doing it directly ove rehre.*/}
-                    <Route path="/new-post" component={NewPost}  />                
+                    { this.state.auth ? <Route path="/new-post" component={NewPost}  /> : null }
                     <Route path="/posts" component={Posts}  />
                     {/* this is another react router dom component. which can be used for redirection from one url to another.
                       you can also specify that route separately and do this but its better to use the above component

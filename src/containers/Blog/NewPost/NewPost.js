@@ -12,6 +12,7 @@ class NewPost extends Component {
     }
 
     componentDidMount(){
+        // if unauth => this.props.history.replace('/posts'); One another way of replacing the route if user is unauthenticated. guards
         console.log(this.props);
     }
 
