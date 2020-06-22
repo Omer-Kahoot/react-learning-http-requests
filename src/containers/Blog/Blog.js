@@ -57,6 +57,10 @@ class Blog extends Component {
                         <ul>
                             {/*<li><a href="/">Home</a></li>
                             <li><a href="new-post">New Post</a></li>*/}
+                            {/* When  a styling is dependent on a root url and not using exact, may cause problems since the
+                            root url nav link will also satisfy for the sub urls as well. So a styling for only the sub url
+                            the root url but removing exact may cause issues and is a tricky thing to do. Normally sub urls
+                            will always be their exact domains. */}
                             <li><NavLink 
                                 to="/" 
                                 activeClassName="my-active"
@@ -64,7 +68,7 @@ class Blog extends Component {
                                     color: '#fa923f',
                                     textDecoration: 'underline'
                                 }}
-                                exact>Home</NavLink></li>
+                                exact>Posts</NavLink></li>
                             {/*By default path name over here points to the absolute path:
                             meaning even if we are on the page i.e. example.com/posts when the below link is clicked
                             it would take to example.com/new-post instead of example.com/posts/new-post. In order
@@ -79,7 +83,9 @@ class Blog extends Component {
                     </nav>
                 </header>
                 <Switch> {/* With switch  it means that any of the following routes, the first route that satisfies the condition return that, and do not render the remaining ones, other wise
-                by default react router dom will always render all routes that satisfy the condition irrespective of order or not.*/}
+                by default react router dom will always render all routes that satisfy the condition irrespective of order or not.
+                
+                Also currently the routes are being defined over here. What we can do is to make those routes inside of a child component instead doing it directly ove rehre.*/}
                     <Route path="/" exact component={Posts}  />
                     <Route path="/new-post" component={NewPost}  />                
                     <Route path="/:id" component={FullPost}  />
