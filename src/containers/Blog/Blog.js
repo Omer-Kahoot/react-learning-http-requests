@@ -62,7 +62,7 @@ class Blog extends Component {
                             the root url but removing exact may cause issues and is a tricky thing to do. Normally sub urls
                             will always be their exact domains. */}
                             <li><NavLink 
-                                to="/" 
+                                to="/posts" 
                                 activeClassName="my-active"
                                 activeStyle={{
                                     color: '#fa923f',
@@ -86,9 +86,9 @@ class Blog extends Component {
                 by default react router dom will always render all routes that satisfy the condition irrespective of order or not.
                 
                 Also currently the routes are being defined over here. What we can do is to make those routes inside of a child component instead doing it directly ove rehre.*/}
-                    <Route path="/" exact component={Posts}  />
                     <Route path="/new-post" component={NewPost}  />                
-                    <Route path="/:id" component={FullPost}  />
+                    <Route path="/posts" component={Posts}  />
+                    {/*<Rout e path="/:id" component={Full Post}  /> adding inside the child component instead.*/}
                 </Switch>
                {/*<Route path="/new-post" render={() => <h1>Home</h1> } />
                 <section className="Posts">

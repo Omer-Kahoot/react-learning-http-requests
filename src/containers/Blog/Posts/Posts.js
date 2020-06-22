@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Post from '../../../components/Post/Post';
 import axios from '../../../axios';
 import './Posts.css';
+import { Route, NavLink } from 'react-router-dom'; //NavLink instead of link is similar in functionailty but also provides us with the option to give some styling on active links etc.
+import FullPost from '../FullPost/FullPost';
 //import { Link } from 'react-router-dom';
 
 class Posts extends Component {
@@ -37,7 +39,7 @@ class Posts extends Component {
         //console.log(id);
         //console.log(this.props.history);
         //In order to go to another link programmatically.
-        this.props.history.push({pathname : '/' + id});
+        this.props.history.push({pathname : '/posts/' + id});
         //this.props.history.push('/' + id);
     }
 
@@ -48,7 +50,7 @@ class Posts extends Component {
                 return (
                     //Following is one way to route to a specific post, but there is another way as well that we can use
                     //programmatically to do. And that will be done accordingly.
-                    //<Link key={post.id} to={'/' + post.id}>
+                    //<Link key={post.id} to={'/posts/' + post.id}>
                         <Post
                             key={post.id}
                             clicked={() => this.postSelectedHandler(post.id)}
@@ -58,9 +60,13 @@ class Posts extends Component {
             )});
         }
         return (
-            <section className="Posts">
-                {posts}
-            </section>
+            <div>
+
+                <section className="Posts">
+                    {posts}
+                </section>
+                <Route path={this.props.match.url + "/:id"} exact component={FullPost} />
+            </div>
         );
     }
 }
