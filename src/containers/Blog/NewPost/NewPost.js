@@ -25,6 +25,11 @@ class NewPost extends Component {
              .then(response=>{
                  console.log(response);
                  this.setState({ submitted : true });
+                 //Another way to redirect is without the redirect component and instead using the history prop over here as follows:
+                 //this.props.history.push('/posts');
+                 //The difference is push pushes the page onto the page stack so clicking on back button will again bring the 
+                 //page to current one that is new post. Redirect on the other hand replaces the page so back button will take
+                 //to previous page not to the one where we have redirected from.
              });
     }
 
