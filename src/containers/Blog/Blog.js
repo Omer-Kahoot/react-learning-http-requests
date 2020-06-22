@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
-
-import Post from '../../components/Post/Post';
-import FullPost from '../../components/FullPost/FullPost';
-import NewPost from '../../components/NewPost/NewPost';
 //import axios from 'axios';
-import axios from '../../axios'
+//import axios from '../../axios'
+import Posts from './Posts/Posts';
+import Route from 'react-router-dom';
 import './Blog.css';
 
 class Blog extends Component {
-    state = {
+    /*state = {
         posts : [],
         selectedPostId : null,
         error : false
-    }
+    }*/
 
-    componentDidMount() {
+    /*componentDidMount() {
         axios.get('/posts')
              .then(response => {
                  const posts = response.data.slice(0,4);
@@ -32,14 +30,14 @@ class Blog extends Component {
                  //console.log(error);
                  this.setState({error: true});
              });
-    }
+    }*/
 
-    postSelectedHandler = (id) => {
+    /*postSelectedHandler = (id) => {
         this.setState({selectedPostId : id});
-    }
+    }*/
     
     render () {
-        let posts = <p style={{textAlign: 'center'}}>Something went wrong</p>;
+        /*let posts = <p style={{textAlign: 'center'}}>Something went wrong</p>;
         if (!this.state.error) {
             posts = this.state.posts.map(post => {
                 return <Post 
@@ -48,11 +46,22 @@ class Blog extends Component {
                             key={post.id} 
                             author={post.author}/>
             }); 
-        }
+        }*/
         
         return (
-            <div>
-                <section className="Posts">
+            <div className="Blog">
+                <header>
+                    <nav>
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="new-post">New Post</a></li>
+                        </ul>
+                    </nav>
+                </header>
+                <Route path="/" exact render={() => <h1>Home</h1> }
+                <Route path="/new-post" render={() => <h1>Home</h1> }
+                <Posts />
+                {/*<section className="Posts">
                     { posts }
                 </section>
                 <section>
@@ -60,7 +69,7 @@ class Blog extends Component {
                 </section>
                 <section>
                     <NewPost />
-                </section>
+                </section>*/}                
             </div>
         );
     }
