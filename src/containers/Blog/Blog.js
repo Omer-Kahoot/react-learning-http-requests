@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 //import axios from 'axios';
 //import axios from '../../axios'
 import Posts from './Posts/Posts';
-import { Route, NavLink, Switch } from 'react-router-dom'; //NavLink instead of link is similar in functionailty but also provides us with the option to give some styling on active links etc.
+import { Route, NavLink, Switch, Redirect } from 'react-router-dom'; //NavLink instead of link is similar in functionailty but also provides us with the option to give some styling on active links etc.
 import NewPost from './NewPost/NewPost';
 import FullPost from './FullPost/FullPost';
 import './Blog.css';
@@ -88,6 +88,11 @@ class Blog extends Component {
                 Also currently the routes are being defined over here. What we can do is to make those routes inside of a child component instead doing it directly ove rehre.*/}
                     <Route path="/new-post" component={NewPost}  />                
                     <Route path="/posts" component={Posts}  />
+                    {/* this is another react router dom component. which can be used for redirection from one url to another.
+                      you can also specify that route separately and do this but its better to use the above component
+                      Also conditional redirection can also be provided to be done.  */}
+                    <Redirect from="/" to="/posts" /> 
+                    {/*<Route path="/" component={Posts}  /> */ }
                     {/*<Rout e path="/:id" component={Full Post}  /> adding inside the child component instead.*/}
                 </Switch>
                {/*<Route path="/new-post" render={() => <h1>Home</h1> } />
