@@ -3,9 +3,18 @@ import React, { Component } from 'react';
 //import axios from '../../axios'
 import Posts from './Posts/Posts';
 import { Route, NavLink, Switch, Redirect } from 'react-router-dom'; //NavLink instead of link is similar in functionailty but also provides us with the option to give some styling on active links etc.
-import NewPost from './NewPost/NewPost';
+//import NewPost from './NewPost/NewPost'; Commenting this since firstly in case of lazy loading we will not be importing the file upfront If we use import
+//webpack automatically imports it inside the bundle js file and imports it as a component which in case of lazy loading we are doing when needed so commenting it.
+
+import asyncComponent from '../../hoc/asyncComponent';
 import FullPost from './FullPost/FullPost';
 import './Blog.css';
+
+//In case of lazy loading::
+//following means to run the import statement only when the below async component is being used somewhere.
+const AsyncNewPost = asyncComponent(() => {
+    return import('./NewPost/NewPost');
+});
 
 class Blog extends Component {
     state = {
@@ -90,7 +99,10 @@ class Blog extends Component {
                 by default react router dom will always render all routes that satisfy the condition irrespective of order or not.
                 
                 Also currently the routes are being defined over here. What we can do is to make those routes inside of a child component instead doing it directly ove rehre.*/}
-                    { this.state.auth ? <Route path="/new-post" component={NewPost}  /> : null }
+                    { /*this.state.auth ? <Route path="/new-post" component={NewPost}  /> : null  Without lazy loading*/}
+                    { 
+                        this.state.auth ? <Route path="/new-post" component={AsyncNewPost}  /> : null  //With lazy loading
+                    }
                     <Route path="/posts" component={Posts}  />
                     {/* this is another react router dom component. which can be used for redirection from one url to another.
                       you can also specify that route separately and do this but its better to use the above component
