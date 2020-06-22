@@ -9,7 +9,7 @@ import './Blog.css';
 
 class Blog extends Component {
     state = {
-        auth : false
+        auth : true
     };
 
     /*state = {
@@ -95,7 +95,10 @@ class Blog extends Component {
                     {/* this is another react router dom component. which can be used for redirection from one url to another.
                       you can also specify that route separately and do this but its better to use the above component
                       Also conditional redirection can also be provided to be done.  */}
-                    <Redirect from="/" to="/posts" /> 
+                    {/* <Redirect from="/" to="/posts" />  this needs to be commented to be able to handler 404 erro cases otherwise it will catch all the requests that are not handled by any other route essentially a 404 route.
+                    So 404 route will be defined as follows. The following route will catch all routes which are not handled by other routes.*/ }
+                    <Route render={() => <h1>Not Found</h1>} />
+
                     {/*<Route path="/" component={Posts}  /> */ }
                     {/*<Rout e path="/:id" component={Full Post}  /> adding inside the child component instead.*/}
                 </Switch>
