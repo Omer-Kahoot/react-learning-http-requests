@@ -57,8 +57,13 @@ class Blog extends Component {
                             {/*<li><a href="/">Home</a></li>
                             <li><a href="new-post">New Post</a></li>*/}
                             <li><Link to="/">Home</Link></li>
+                            {/*By default path name over here points to the absolute path:
+                            meaning even if we are on the page i.e. example.com/posts when the below link is clicked
+                            it would take to example.com/new-post instead of example.com/posts/new-post. In order
+                            to make it an relative kind of path, we will have to apped the props property url match
+                            inside this path name like this.props.match.url + /new-post*/}
                             <li><Link to={{
-                                pathname : 'new-post',
+                                pathname : '/new-post',
                                 hash: '#submit',
                                 search: '?quick-submit=true'
                             }}>New Post</Link></li>
